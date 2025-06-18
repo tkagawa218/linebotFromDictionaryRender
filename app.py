@@ -66,4 +66,5 @@ def handle_message(event):
 
 # ローカル実行用
 if __name__ == "__main__":
-    app.run(port=5000)
+    port = int(os.environ.get("PORT", 5000))  # RenderがPORT環境変数を渡す
+    app.run(host="0.0.0.0", port=port)
