@@ -64,7 +64,7 @@ def process_openai_reply(event):
                 {"role": "system", "content": "以下の文章の意味をやさしく説明してください。"},
                 {"role": "user", "content": user_text}
             ],
-            max_tokens=100
+            max_tokens=50
         )
         reply_text = response.choices[0].message.content.strip()
         print("🤖 OpenAI reply:", reply_text)
