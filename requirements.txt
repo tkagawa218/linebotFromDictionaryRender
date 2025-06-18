@@ -1,4 +1,5 @@
-flask
+fastapi
+uvicorn
 python-dotenv
 line-bot-sdk
 openai>=1.0.0
