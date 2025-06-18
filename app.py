@@ -1,4 +1,5 @@
 import os
+import threading
 from flask import Flask, request, abort
 from dotenv import load_dotenv
 
@@ -8,43 +9,54 @@ from linebot.models import MessageEvent, TextMessage, TextSendMessage
 
 import openai
 
-# 環境変数を読み込む
+# 環境変数の読み込み（ローカル実行時のみ有効、Renderでは無視される）
 load_dotenv()
 
-# 各種APIキー
+# APIキーの取得
 LINE_CHANNEL_ACCESS_TOKEN = os.getenv("LINE_CHANNEL_ACCESS_TOKEN")
 LINE_CHANNEL_SECRET = os.getenv("LINE_CHANNEL_SECRET")
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 
-# Flaskアプリケーション
+# Flaskアプリケーション作成
 app = Flask(__name__)
 
-# LINE Bot設定
+# LINE SDK設定
 line_bot_api = LineBotApi(LINE_CHANNEL_ACCESS_TOKEN)
 handler = WebhookHandler(LINE_CHANNEL_SECRET)
 
-# OpenAI API設定
+# OpenAIキー設定
 openai.api_key = OPENAI_API_KEY
 
-# LINE Webhookの受け口
+# GET / にアクセスがあった場合のレスポンス（Renderのヘルスチェック対策）
+@app.route("/", methods=["GET"])
+def index():
+    return "LINE Bot is running.", 200
+
+# Webhookエンドポイント
 @app.route("/callback", methods=["POST"])
 def callback():
     signature = request.headers["X-Line-Signature"]
     body = request.get_data(as_text=True)
+    print("🔔 Webhook Received:", body)
 
     try:
         handler.handle(body, signature)
     except InvalidSignatureError:
+        print("❌ InvalidSignatureError: 署名が一致しません")
         abort(400)
 
     return "OK"
 
-# ユーザーからのメッセージを処理
+# ユーザーのメッセージを処理（非同期でOpenAI処理を開始）
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
-    user_text = event.message.text
+    threading.Thread(target=process_openai_reply, args=(event,)).start()
 
-    # ChatGPTへの問い合わせ
+# OpenAIとの連携と返信処理
+def process_openai_reply(event):
+    user_text = event.message.text
+    print(f"📝 User: {user_text}")
+
     try:
         response = openai.ChatCompletion.create(
             model="gpt-3.5-turbo",
@@ -55,16 +67,21 @@ def handle_message(event):
             max_tokens=100
         )
         reply_text = response.choices[0].message.content.strip()
+        print("🤖 ChatGPT Response:", reply_text)
     except Exception as e:
-        reply_text = "エラーが発生しました: " + str(e)
+        reply_text = f"エラーが発生しました: {str(e)}"
+        print("❌ OpenAI Error:", e)
 
-    # LINEへ返信
-    line_bot_api.reply_message(
-        event.reply_token,
-        TextSendMessage(text=reply_text)
-    )
+    try:
+        line_bot_api.reply_message(
+            event.reply_token,
+            TextSendMessage(text=reply_text)
+        )
+        print("✅ LINE返信成功")
+    except Exception as e:
+        print("❌ LINEへの返信エラー:", e)
 
-# ローカル実行用
+# ポート指定（Renderでの起動に必須）
 if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 5000))  # RenderがPORT環境変数を渡す
+    port = int(os.environ.get("PORT", 5000))
     app.run(host="0.0.0.0", port=port)
