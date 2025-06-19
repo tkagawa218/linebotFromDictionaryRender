@@ -18,7 +18,7 @@ handler = WebhookHandler(os.getenv("LINE_CHANNEL_SECRET"))
 
 # Gemini設定
 configure(api_key=os.getenv("GEMINI_API_KEY"))
-model = GenerativeModel("gemini-pro")
+model = GenerativeModel("models/gemini-pro")
 
 @app.get("/")
 def health_check():
