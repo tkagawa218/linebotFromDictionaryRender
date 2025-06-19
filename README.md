@@ -1,12 +1,3 @@
----
-title: "Gemini × LINEで作る辞書Bot｜FastAPIで爆速構築"
-emoji: "📚"
-type: "tech" # or "idea"
-topics: ["FastAPI", "LINE", "Gemini", "AI", "Render"]
-published: true
-image: "https://github.com/tkagawa218/linebotFromDictionaryRender/Title.png"
----
-
 # 📚 Gemini × LINE 辞書Bot（FastAPI構成）
 
 このBotは、LINEで「〇〇とは？」と送ると、**Google Gemini Flash モデル**を使ってやさしく意味を返す、辞書形式のAIチャットボットです。  
