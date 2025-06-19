@@ -4,7 +4,7 @@ emoji: "📚"
 type: "tech" # or "idea"
 topics: ["FastAPI", "LINE", "Gemini", "AI", "Render"]
 published: true
-image: "https://github.com/tkagawa218/linebotFromDictionaryRender/"
+image: "https://github.com/tkagawa218/linebotFromDictionaryRender/Title.png"
 ---
 
 # 📚 Gemini × LINE 辞書Bot（FastAPI構成）
