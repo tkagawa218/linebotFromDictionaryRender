@@ -31,8 +31,10 @@ FastAPI + Render 無料枠で構築されており、学習用途・プロトタ
 ---
 
 ## ▶️ 動作イメージ
-👤 ユーザー：機械学習とは？
+👤 ユーザー：機械学習とは？<br>
 🤖 Bot　　：機械学習とは、データからパターンを学習し…
+
+<img src="ファイル_000.png" alt="Gemini LINE Bot 動作例" width="400"/>
 
 ## 📁 ファイル構成
 
@@ -59,29 +61,19 @@ MODEL_NAME=gemini-1.5-flash
 ```
 
 #### 2. Renderへデプロイ（無料プラン対応）
-render.yaml で「Web Service」作成
-
-worker.py は任意で「Background Worker」設定可能
-
+- render.yaml で「Web Service」作成
+- worker.py は任意で「Background Worker」設定可能
 
 📝 補足・工夫ポイント
-
-   Gemini Flashモデル採用で高速×無料な応答実現
-
-   LINEの応答タイムアウト対策で非同期設計済み
-
-   loguru による強力なログ記録（トラブル追跡に便利）
-
-   worker.py による非同期処理も構築可能な設計
+- Gemini Flashモデル採用で高速×無料な応答実現
+- LINEの応答タイムアウト対策で非同期設計済み
+- loguru による強力なログ記録（トラブル追跡に便利）
+- worker.py による非同期処理も構築可能な設計
 
 💡 将来の拡張案
-   RedisによるタスクQueue処理（複数Botで分散対応）
+- RedisによるタスクQueue処理（複数Botで分散対応）
+- AIモデルの切替（OpenAI / Claude など）
+- ログ/履歴管理によるユーザー対応の拡張
+- Web UIによるログビューや統計表示ダッシュボード
 
-   AIモデルの切替（OpenAI / Claude など）
-
-   ログ/履歴管理によるユーザー対応の拡張
-
-   Web UIによるログビューや統計表示ダッシュボード
-
-📮 連絡・著者
-   制作：Tatsuya Kagawa（フリーランスエンジニア）
+📮 連絡・著者 制作：Tatsuya Kagawa（フリーランスエンジニア）
