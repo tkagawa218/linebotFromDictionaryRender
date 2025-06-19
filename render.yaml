@@ -1,20 +1,14 @@
 services:
   - type: web
-    name: linebot-gemini-web
+    name: linebot-gemini
     env: python
+    plan: free
     buildCommand: pip install -r requirements.txt
-    startCommand: python app.py
+    startCommand: uvicorn app:app --host 0.0.0.0 --port 10000
     envVars:
-      - key: PYTHON_VERSION
-        value: 3.11.8
-      - key: PORT
-        value: 10000
-
-  - type: worker
-    name: linebot-gemini-worker
-    env: python
-    buildCommand: pip install -r requirements.txt
-    startCommand: python worker.py
-    envVars:
-      - key: PYTHON_VERSION
-        value: 3.11.8
+      - key: LINE_CHANNEL_SECRET
+        sync: false
+      - key: LINE_CHANNEL_ACCESS_TOKEN
+        sync: false
+      - key: GEMINI_API_KEY
+        sync: false
