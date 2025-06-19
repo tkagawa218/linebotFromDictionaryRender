@@ -15,7 +15,6 @@ FastAPI + Render 無料枠で構築されており、学習用途・プロトタ
 | LINE連携     | LINE Messaging API               |
 | AIモデル     | Google Gemini 1.5 Flash          |
 | ログ出力     | loguru                           |
-| 非同期処理   | `message_queue.py` 簡易Queue構成 |
 
 ---
 
