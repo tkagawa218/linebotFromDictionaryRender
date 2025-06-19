@@ -24,7 +24,7 @@ handler = WebhookHandler(LINE_CHANNEL_SECRET)
 
 # Gemini 初期化
 configure(api_key=GEMINI_API_KEY)
-gemini_model = GenerativeModel("gemini-pro")
+gemini_model = GenerativeModel("models/gemini-1.5-pro")
 
 # FastAPI アプリ作成
 app = FastAPI()
