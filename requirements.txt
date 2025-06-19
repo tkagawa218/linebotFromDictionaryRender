@@ -1,6 +1,15 @@
+# FastAPI & Uvicorn
 fastapi==0.110.1
 uvicorn==0.29.0
+
+# LINE Bot SDK（2.4.2はrequests==2.28.2を要求）
 line-bot-sdk==2.4.2
+
+# Gemini SDK
 google-generativeai==0.3.2
+
+# 環境変数
 python-dotenv==1.0.1
-requests==2.31.0
+
+# リクエストライブラリ（バージョン固定を下げて互換性確保）
+requests==2.28.2
