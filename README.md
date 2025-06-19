@@ -141,3 +141,23 @@ https://your-app-name.onrender.com/callback
 ## 📮 連絡・著者
 
 制作：**Tatsuya Kagawa（フリーランスエンジニア）**  
+
+![Python](https://img.shields.io/badge/Python-3.11-blue)
+![FastAPI](https://img.shields.io/badge/FastAPI-async-green)
+![Render](https://img.shields.io/badge/Deployed-Render-success)
+![Gemini](https://img.shields.io/badge/Gemini-Flash-orange)
+
+--
+
+## 📄 ライセンス
+
+本プロジェクトは [Tatsuya Kagawa](https://github.com/tkagawa218) によって作成されました。  
+以下のライセンスのもとで公開されています：
+
+**[CC BY 4.0（表示）](https://creativecommons.org/licenses/by/4.0/deed.ja)**
+
+- 営利・非営利を問わず利用可能  
+- 改変・再配布・派生利用も可能  
+- クレジット（著作表示）の記載が必要です
+
+© 2025 Tatsuya Kagawa
