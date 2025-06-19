@@ -161,3 +161,7 @@ https://your-app-name.onrender.com/callback
 - クレジット（著作表示）の記載が必要です
 
 © 2025 Tatsuya Kagawa
+
+## 📖 関連リンク
+
+- 📘 Zenn記事：[Gemini × LINEで作る辞書Bot｜FastAPIで爆速構築](https://zenn.dev/tkagawa218/articles/gemini-line-fastapi-bot)
