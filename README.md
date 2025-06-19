@@ -37,19 +37,19 @@ FastAPI + Render 無料枠で構築されており、学習用途・プロトタ
 ## 📁 ファイル構成
 
 .
-├── app.py # Webhook受信＆LINE返信（FastAPIメイン処理）
-├── worker.py # 非同期バックグラウンド処理（オプション）
-├── gemini_client.py # Gemini APIとの通信クライアント
-├── message_queue.py # 簡易メッセージQueue構成
-├── requirements.txt # ライブラリ定義
-├── render.yaml # Render用のサービス定義ファイル
-├── Procfile # Render実行定義
-├── .env.example # 環境変数テンプレート
-└── README.md # このファイル
+- ├── app.py # Webhook受信＆LINE返信（FastAPIメイン処理）
+- ├── worker.py # 非同期バックグラウンド処理（オプション）
+- ├── gemini_client.py # Gemini APIとの通信クライアント
+- ├── message_queue.py # 簡易メッセージQueue構成
+- ├── requirements.txt # ライブラリ定義
+- ├── render.yaml # Render用のサービス定義ファイル
+- ├── Procfile # Render実行定義
+- ├── .env.example # 環境変数テンプレート
+- └── README.md # このファイル
 
 ## 🚀 セットアップ手順
 
-### 1. 環境変数を設定（`.env` または Render上）
+#### 1. 環境変数を設定（`.env` または Render上）
 
 ```env
 LINE_CHANNEL_ACCESS_TOKEN=xxxxx
@@ -57,10 +57,12 @@ LINE_CHANNEL_SECRET=xxxxx
 GOOGLE_API_KEY=xxxxx
 MODEL_NAME=gemini-1.5-flash
 
-3. Renderへデプロイ（無料プラン対応）
+#### 2. Renderへデプロイ（無料プラン対応）
 render.yaml で「Web Service」作成
 
 worker.py は任意で「Background Worker」設定可能
+
+---
 
 📝 補足・工夫ポイント
 Gemini Flashモデル採用で高速×無料な応答実現
