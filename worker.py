@@ -4,7 +4,7 @@ from linebot import LineBotApi
 from linebot.models import TextSendMessage
 import os
 
-from queue import message_queue
+from message_queue import message_queue
 from gemini_client import ask_gemini
 
 load_dotenv()

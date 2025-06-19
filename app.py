@@ -4,7 +4,7 @@ from dotenv import load_dotenv
 from linebot import LineBotApi, WebhookHandler
 from linebot.models import MessageEvent, TextMessage
 from linebot.exceptions import InvalidSignatureError
-from queue import message_queue
+from message_queue import message_queue
 
 load_dotenv()
 
