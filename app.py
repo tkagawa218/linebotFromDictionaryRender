@@ -5,9 +5,9 @@ from linebot.models import MessageEvent, TextMessage, TextSendMessage
 from linebot.exceptions import InvalidSignatureError
 from google.generativeai import configure, GenerativeModel
 import os
+from dotenv import load_dotenv
 
 # 環境変数の読み込み
-from dotenv import load_dotenv
 load_dotenv()
 
 app = FastAPI()
@@ -57,3 +57,8 @@ def handle_message(event):
         event.reply_token,
         TextSendMessage(text=reply_text)
     )
+
+# uvicorn経由で起動（Render用）
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run("app:app", host="0.0.0.0", port=int(os.environ.get("PORT", 10000)))
