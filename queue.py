@@ -1,3 +1,3 @@
 from queue import Queue
 
-event_queue = Queue()
+message_queue = Queue()
